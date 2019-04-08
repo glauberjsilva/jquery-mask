@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="utf-8"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
+        <!-- Latest compiled and minified JavaScript -->
+        
+        <script src="javascript/jquery-3.3.1.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <script type="text/javascript">
+            jQuery.fn.removeNot = function( settings ){
+                var $this = jQuery( this );
+                var defaults = {
+                    pattern: /[^0-9]/,
+                    replacement: ''
+                }
+                settings = jQuery.extend(defaults, settings);
+
+                $this.keyup(function(){
+                    var new_value = $this.val().replace( settings.pattern, settings.replacement );
+                    $this.val( new_value );
+                });
+                return $this;
+            }
+            $(document).ready(function(){
+                $("#campo1").removeNot({ pattern: /[^0-9]+/g });
+                $("#campo2").removeNot({ pattern: /[^a-z]+/g });
+                $("#campo3").removeNot({ pattern: /[^a-z]+/gi });
+                $("#campo4").removeNot({ pattern: /[^a-z0-9]+/gi });
+                $("#campo5").removeNot({ pattern: /[^2468]+/g });
+                $("#campo6").removeNot({ pattern: /[^a-zA-Z0-9 á-ú -.]+/gi });
+            });
+        </script>
+        <style type="text/css">
+            label { display: block; }
+        </style>
+
+        <form action="" method="post">
+            <label><input type="text" value="" id="campo1" />
+            somente números</label>
+
+            <label><input type="text" value="" id="campo2" />
+            somente letras minúsculas</label>
+
+            <label><input type="text" value="" id="campo3" />
+            somente letras maiúsculas e minúsculas</label>
+
+            <label><input type="text" value="" id="campo4" />
+            somente letras maiúsculas e minúsculas e numeros</label>
+
+            <label><input type="text" value="" id="campo5" />
+            somente valores definidos (2,4,6,8)</label>
+
+            <label><input type="text" value="" id="campo6" />
+            caracteres diversos</label>
+        </form>
+    </body>
+</html>
